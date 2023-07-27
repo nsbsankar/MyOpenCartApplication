@@ -30,8 +30,9 @@ public class AccountLogoutPage extends BasePage{
         elementUtils.clickOnElement(lnkMyAccountMenu, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
     }
 
-    public void clickOnLoginOption(){
+    public LoginPage clickOnLoginOption(){
         elementUtils.clickOnElement(lnkLoginOption, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+        return new LoginPage(driver);
     }
 
     public boolean isDisplayedLoginOptionInMyAccountDropmenu(){
@@ -41,5 +42,9 @@ public class AccountLogoutPage extends BasePage{
     public HomePage clickOnContinue(){
         elementUtils.clickOnElement(btnContinue, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
         return new HomePage(driver);
+    }
+
+    public void navigate(String navigationType){
+        elementUtils.navigationAction(navigationType);
     }
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import utils.CommonUtils;
 import utils.ElementUtils;
 
+import java.util.List;
+
 public class HomePage extends BasePage{
 
     ElementUtils elementUtils;
@@ -24,6 +26,9 @@ public class HomePage extends BasePage{
     @FindBy(linkText = "Login")
     private WebElement lnkLogin;
 
+    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right']/li")
+    private List<WebElement> drpdwnMyaccount;
+
     //Action methods
 
     public void clickOnMyAccountDropdownMenu(){
@@ -40,6 +45,9 @@ public class HomePage extends BasePage{
     public LoginPage clickOnLoginOption(){
         elementUtils.clickOnElement(lnkLogin,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
         return new LoginPage(driver);
+    }
+    public boolean isOptionDisplayed(String option){
+       return elementUtils.isOptionDisplayed(drpdwnMyaccount,CommonUtils.EXPLICIT_WAIT_BASIC_TIME,option);
     }
 
 }

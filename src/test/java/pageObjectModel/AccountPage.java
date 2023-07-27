@@ -29,6 +29,9 @@ public class AccountPage extends BasePage{
     @FindBy(linkText = "Logout")
     private WebElement lnkLogoutOption;
 
+    @FindBy(xpath = "//aside[@id='column-right']/div/a[text()='Logout']")
+    private WebElement lnkLogoutInRightColumn;
+
     //Action Methods
     public String getHeadingMyAccount(){
         return elementUtils.getTextFromElement(headingMyAccount, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
@@ -52,5 +55,14 @@ public class AccountPage extends BasePage{
     public AccountLogoutPage clickOnLogoutOption(){
         elementUtils.clickOnElement(lnkLogoutOption,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
         return new AccountLogoutPage(driver);
+    }
+
+    public AccountLogoutPage clickOnLogoutInRightColumn(){
+        elementUtils.clickOnElement(lnkLogoutInRightColumn,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+        return new AccountLogoutPage(driver);
+    }
+
+    public boolean isDisplayedLogoutOptionInRightColumn(){
+        return elementUtils.displayStatusOfElement(lnkLogoutInRightColumn,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
     }
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class ElementUtils {
 
@@ -40,6 +41,17 @@ public class ElementUtils {
             e.printStackTrace();
         }
         return webElement;
+    }
+
+    public List<WebElement> waitForAllElementsVisible(List<WebElement> elementList, long DurationInSeconds){
+        List<WebElement> webElements = null;
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(DurationInSeconds));
+            webElements = wait.until(ExpectedConditions.visibilityOfAllElements(elementList));
+        }catch (Throwable t){
+            t.printStackTrace();
+        }
+        return webElements;
     }
 
     // Wait for alert to be present
@@ -143,12 +155,36 @@ public class ElementUtils {
     }
 
     public String getTextFromHTMLInfoTooltip(WebElement element){
-        WebElement webElement = element;
-        return webElement.getAttribute("validationMessage");
+        return element.getAttribute("validationMessage");
     }
 
     public String getPlaceholderTextFromElement(WebElement element, long DurationInSeconds){
         WebElement webElement = waitForElementVisible(element, DurationInSeconds);
         return webElement.getAttribute("placeholder");
+    }
+
+    public void navigateBack(){
+        driver.navigate().back();
+    }
+    public void navigationAction(String navigationType){
+        if (navigationType.equalsIgnoreCase("Forward")) {
+            driver.navigate().forward();
+        } else if (navigationType.equalsIgnoreCase("Backward")) {
+            driver.navigate().back();
+        } else if(navigationType.equalsIgnoreCase("Refresh")){
+            driver.navigate().refresh();
+        }else{
+            throw new IllegalArgumentException("Invalid navigation type provided ");
+        }
+    }
+
+    public boolean isOptionDisplayed(List<WebElement> optionsList, long DurationInSeconds, String option){
+        List<WebElement> webElements = waitForAllElementsVisible(optionsList, DurationInSeconds);
+        for(WebElement element :webElements){
+            if(element.getText().equalsIgnoreCase(option)){
+                return element.isDisplayed();
+            }
+        }
+        return false;
     }
 }

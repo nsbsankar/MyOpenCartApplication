@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import utils.CommonUtils;
 import utils.ElementUtils;
 
+import java.util.List;
+
 public class RegisterPage extends BasePage{
 
     ElementUtils elementUtils;
@@ -71,6 +73,9 @@ public class RegisterPage extends BasePage{
 
     @FindBy(xpath = "//div[@id='account-register']/div[contains(@class,'alert-danger')]")
     private WebElement msgExistingEmailWarning;
+
+    @FindBy(xpath = "//div[@class='list-group']/a")
+    private List<WebElement> rightColumnOptions;
 
     //Action methods
 
@@ -193,5 +198,9 @@ public class RegisterPage extends BasePage{
 
     public String getTextFromEmailTooltip(){
         return elementUtils.getTextFromHTMLInfoTooltip(txtEmail);
+    }
+
+    public boolean isOptionDisplayedOnRightColumnOption(String option){
+       return elementUtils.isOptionDisplayed(rightColumnOptions,CommonUtils.EXPLICIT_WAIT_BASIC_TIME,option);
     }
 }
