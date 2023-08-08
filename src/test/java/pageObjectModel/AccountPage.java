@@ -32,6 +32,9 @@ public class AccountPage extends BasePage{
     @FindBy(xpath = "//aside[@id='column-right']/div/a[text()='Logout']")
     private WebElement lnkLogoutInRightColumn;
 
+    @FindBy(xpath = "//i[@class='fa fa-home']")
+    private WebElement lnkHomeBreadCrumb;
+
     //Action Methods
     public String getHeadingMyAccount(){
         return elementUtils.getTextFromElement(headingMyAccount, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
@@ -64,5 +67,10 @@ public class AccountPage extends BasePage{
 
     public boolean isDisplayedLogoutOptionInRightColumn(){
         return elementUtils.displayStatusOfElement(lnkLogoutInRightColumn,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+
+    public HomePage clickOnHomeSymbolInBreadCrumb(){
+        elementUtils.clickOnElement(lnkHomeBreadCrumb,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+        return new HomePage(driver);
     }
 }

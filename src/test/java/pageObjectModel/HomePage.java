@@ -29,6 +29,12 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right']/li")
     private List<WebElement> drpdwnMyaccount;
 
+    @FindBy(name = "search")
+    private WebElement txtSearchField;
+
+    @FindBy(xpath = "//span[@class='input-group-btn']/button")
+    private WebElement btnSearchIcon;
+
     //Action methods
 
     public void clickOnMyAccountDropdownMenu(){
@@ -48,6 +54,14 @@ public class HomePage extends BasePage{
     }
     public boolean isOptionDisplayed(String option){
        return elementUtils.isOptionDisplayed(drpdwnMyaccount,CommonUtils.EXPLICIT_WAIT_BASIC_TIME,option);
+    }
+    public void enterTextIntoSearchField(String productName){
+        elementUtils.enterTextIntoElement(txtSearchField,productName,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+
+    public SearchResultsPage clickOnSearchIconButton(){
+        elementUtils.clickOnElement(btnSearchIcon,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+        return new SearchResultsPage(driver);
     }
 
 }

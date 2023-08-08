@@ -106,7 +106,7 @@ public class ElementUtils {
 
         WebElement webElement = waitForElementVisible(element, DurationInSeconds);
         Actions actions = new Actions(driver);
-        actions.moveToElement(webElement).build().perform();
+        actions.moveToElement(webElement).click().build().perform();
 
     }
 
