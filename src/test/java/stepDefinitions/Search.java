@@ -4,10 +4,13 @@ import factory.DriverFactory;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pageObjectModel.AccountPage;
 import pageObjectModel.HomePage;
 import pageObjectModel.LoginPage;
 import pageObjectModel.SearchResultsPage;
+
+import java.util.List;
 
 public class Search {
 
@@ -33,7 +36,7 @@ public class Search {
     }
     @Then("Searched product {string} should be displayed in the search results")
     public void searched_product_should_be_displayed_in_the_search_results(String searchedProduct) {
-        Assert.assertEquals(searchResultsPage.getTextFromSearchResultiMac(),searchedProduct);
+        Assert.assertEquals(searchResultsPage.getTextFromSearchResult(),searchedProduct);
     }
     @When("User enters non existing product name {string} into the search text box field")
     public void user_enters_non_existing_product_name_into_the_search_text_box_field(String nonExistingProductName) {
@@ -56,5 +59,21 @@ public class Search {
         accountPage = loginPage.clickOnLoginButton();
         homePage = accountPage.clickOnHomeSymbolInBreadCrumb();
 
+    }
+    @When("User enter {string} in the search text box field which can result in multiple products")
+    public void user_enter_search_criteria_in_the_search_text_box_field_which_can_result_in_multiple_products(String searchText) {
+        homePage.enterTextIntoSearchField(searchText);
+    }
+    @Then("More than one product should be displayed")
+    public void more_than_one_product_should_be_displayed() {
+        Assert.assertNotEquals(1,searchResultsPage.getMultipleProducts().size());
+    }
+    @When("Enter any existing product name {string} into the search criteria text box field")
+    public void enter_any_existing_product_name_into_the_search_criteria_text_box_field(String existingProductName) {
+       searchResultsPage.enterProductNameIntoSearchCriteriaTextBox(existingProductName);
+    }
+    @When("Click on search button")
+    public void click_on_search_button() {
+        searchResultsPage.clickOnSearchButton();
     }
 }

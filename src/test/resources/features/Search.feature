@@ -21,11 +21,29 @@ Feature: Validating Search functionality of the Open Cart Application
     And Click on search icon button
     Then "There is no product that matches the search criteria." should be displayed
 
-  @SearchAfterLogin
+  @SearchAfterLogin @Smoke
   Scenario: Validate searching for a product after login to the Application
     Given User is logged into the application with email "nsbsankar15696@gmail.com" and password "12345" for Search Functionality
     When User enters existing product name "iMac" into the search text box field
     And Click on search icon button
     Then Searched product "iMac" should be displayed in the search results
+
+  @MultipleProducts
+  Scenario: Validate searching by providing a search criteria which results in multiple products
+    When User enter "Mac" in the search text box field which can result in multiple products
+    And Click on search icon button
+    Then More than one product should be displayed
+
+  @SearchWithSearchCriteria
+  Scenario: Validate searching using 'Search Criteria' field
+    When User dont enters anything into the search text box field
+    And Click on search icon button
+    And Enter any existing product name "iPhone" into the search criteria text box field
+    And Click on search button
+    Then Searched product "iPhone" should be displayed in the search results
+
+
+
+
 
 

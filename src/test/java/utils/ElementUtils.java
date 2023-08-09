@@ -187,4 +187,7 @@ public class ElementUtils {
         }
         return false;
     }
+    public List<WebElement> getListofElements(List<WebElement> elementList, long DurationInSeconds){
+        return waitForAllElementsVisible(elementList, DurationInSeconds);
+    }
 }
