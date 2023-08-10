@@ -82,11 +82,17 @@ public class ElementUtils {
     }
 
     // Method to select an option from select class dropdown
-    public void selectOptionInDropdown(WebElement element,String dropdownOption,long DurationInSeconds){
+    public void selectOptionInDropdownByVisibleText(WebElement element,String dropdownOption,long DurationInSeconds){
 
         WebElement webElement = waitForElementClickable(element, DurationInSeconds);
         Select select = new Select(webElement);
         select.selectByVisibleText(dropdownOption);
+    }
+    public void selectOptionInDropdownByValue(WebElement element,String dropdownOptionValue,long DurationInSeconds){
+
+        WebElement webElement = waitForElementClickable(element, DurationInSeconds);
+        Select select = new Select(webElement);
+        select.selectByValue(dropdownOptionValue);
     }
 
     // Method to click OK(Accept) on alert

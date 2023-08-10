@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
                 dryRun = false,
                 monochrome = true,
                 publish = true,
-                tags = "@SearchWithSearchCriteria",
+                tags = "@SearchInSubCategories",
                 plugin = {"pretty","html:target/CucumberReports/CucumberReport.html"}
 )
 public class TestRunner {

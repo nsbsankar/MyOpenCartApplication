@@ -76,4 +76,25 @@ public class Search {
     public void click_on_search_button() {
         searchResultsPage.clickOnSearchButton();
     }
+    @When("Select the correct category of the given product name into All Categories dropdown {string} is the value")
+    public void select_the_correct_category_of_the_given_product_name_into_all_categories_dropdown(String correctCategoryValue) {
+        searchResultsPage.clickOnAllCategoriesDropDown();
+        searchResultsPage.selectOptionInCategoryDropdownUsingValue(correctCategoryValue);
+    }
+
+    @When("Select the wrong category of the given product name into All Categories dropdown {string} is the value")
+    public void select_the_wrong_category_of_the_given_product_name_into_all_categories_dropdown(String wrongCategoryValue) {
+        searchResultsPage.clickOnAllCategoriesDropDown();
+        searchResultsPage.selectOptionInCategoryDropdownUsingValue(wrongCategoryValue);
+    }
+    @When("Select the Parent Category of the given product name {string} into All Categories dropdown")
+    public void select_the_parent_category_of_the_given_product_name_into_all_categories_dropdown(String parentCategoryOption) {
+        searchResultsPage.clickOnAllCategoriesDropDown();
+        searchResultsPage.selectOptionInCategoryDropdown(parentCategoryOption);
+    }
+    @Then("Select Search in subcategories check box field")
+    public void select_search_in_subcategories_check_box_field() {
+        searchResultsPage.clickOnSubCategoriesCheckBox();
+    }
+
 }

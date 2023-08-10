@@ -31,6 +31,12 @@ public class SearchResultsPage extends BasePage{
 
     @FindBy(id = "button-search")
     private WebElement btnSearch;
+
+    @FindBy(name = "category_id")
+    private WebElement drpdwnAllCategories;
+
+    @FindBy(xpath = "//input[@name='sub_category']")
+    private WebElement chkbxSubCategories;
     //Action Methods
     public String getTextFromSearchResult(){
         return elementUtils.getTextFromElement(lnkProduct, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
@@ -46,5 +52,19 @@ public class SearchResultsPage extends BasePage{
     }
     public void clickOnSearchButton(){
         elementUtils.clickOnElement(btnSearch,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+
+    public void clickOnAllCategoriesDropDown(){
+        elementUtils.clickOnElement(drpdwnAllCategories,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+
+    public void selectOptionInCategoryDropdownUsingValue(String categoryOptionValue){
+        elementUtils.selectOptionInDropdownByValue(drpdwnAllCategories,categoryOptionValue,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+    public void selectOptionInCategoryDropdown(String categoryOption){
+        elementUtils.selectOptionInDropdownByVisibleText(drpdwnAllCategories,categoryOption,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+    public void clickOnSubCategoriesCheckBox(){
+        elementUtils.clickOnElement(chkbxSubCategories,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
     }
 }
