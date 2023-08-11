@@ -5,10 +5,7 @@ import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pageObjectModel.AccountPage;
-import pageObjectModel.HomePage;
-import pageObjectModel.LoginPage;
-import pageObjectModel.SearchResultsPage;
+import pageObjectModel.*;
 
 import java.util.List;
 
@@ -20,6 +17,7 @@ public class Search {
     SearchResultsPage searchResultsPage;
     LoginPage loginPage;
     AccountPage accountPage;
+    ProductDisplayPage productDisplayPage;
 
     @Given("User is on the Open Cart Home page for Search feature")
     public void user_is_on_the_open_cart_home_page_for_search_feature() {
@@ -95,6 +93,35 @@ public class Search {
     @Then("Select Search in subcategories check box field")
     public void select_search_in_subcategories_check_box_field() {
         searchResultsPage.clickOnSubCategoriesCheckBox();
+    }
+    @When("Select List option")
+    public void select_list_option() {
+        searchResultsPage.clickOnListViewButton();
+    }
+    @Then("Single product should be displayed in the List view")
+    public void single_product_should_be_displayed_in_the_list_view() {
+        Assert.assertTrue(searchResultsPage.isSingleProductDisplayedInList());
+    }
+    @Then("Click on the Image of the product")
+    public void click_on_the_image_of_the_product() {
+        productDisplayPage = searchResultsPage.clickOnImageOfTheSingleProductInList();
+    }
+    @Then("User should navigated to the product display page of the product")
+    public void user_should_navigated_to_the_product_display_page_of_the_product() {
+        Assert.assertEquals("Description",productDisplayPage.getTextFromDescriptionTab());
+        productDisplayPage.clickOnHomeIconInBreadCrumb();
+    }
+    @When("Select Grid option")
+    public void select_grid_option() {
+        searchResultsPage.clickOnGridViewButton();
+    }
+    @Then("Single product should be displayed in the Grid view")
+    public void single_product_should_be_displayed_in_the_grid_view() {
+       Assert.assertTrue(searchResultsPage.isSingleProductDisplayedInGrid());
+    }
+    @Then("Click on the name of the product")
+    public void click_on_the_name_of_the_product() {
+        searchResultsPage.clickOnNameOfThenSingleProductInGrid();
     }
 
 }

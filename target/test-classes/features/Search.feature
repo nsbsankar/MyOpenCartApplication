@@ -72,6 +72,21 @@ Feature: Validating Search functionality of the Open Cart Application
     And Click on search button
     Then Searched product "iMac" should be displayed in the search results
 
+    @TC_SF_011
+  Scenario: Validate List and Grid views when only one Product is displayed in the search results
+    When User enters existing product name "iMac" into the search text box field
+    And Click on search icon button
+    And Select List option
+    Then Single product should be displayed in the List view
+    And Click on the Image of the product
+    Then User should navigated to the product display page of the product
+    When User enters existing product name "iMac" into the search text box field
+    And Click on search icon button
+    And Select Grid option
+    Then Single product should be displayed in the Grid view
+    And Click on the name of the product
+    Then User should navigated to the product display page of the product
+
 
 
 

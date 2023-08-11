@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import utils.CommonUtils;
 import utils.ElementUtils;
 
+import java.nio.file.WatchEvent;
 import java.util.List;
 
 public class SearchResultsPage extends BasePage{
@@ -37,6 +38,24 @@ public class SearchResultsPage extends BasePage{
 
     @FindBy(xpath = "//input[@name='sub_category']")
     private WebElement chkbxSubCategories;
+
+    @FindBy(id = "list-view")
+    private WebElement btnListView;
+
+    @FindBy(xpath = "//div[contains(@class,'product-list')]/div")
+    private WebElement singleProductInList;
+
+    @FindBy(xpath = "//div[contains(@class,'product-list')]//div/a")
+    private WebElement imgSingleProductInList;
+
+    @FindBy(id = "grid-view")
+    private WebElement btnGridView;
+
+    @FindBy(xpath = "//div[contains(@class,'product-grid')]/div")
+    private WebElement singleProductInGrid;
+
+    @FindBy(xpath = "//div[contains(@class,'product-grid')]//div/h4/a")
+    private WebElement singleProductNameInGrid;
     //Action Methods
     public String getTextFromSearchResult(){
         return elementUtils.getTextFromElement(lnkProduct, CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
@@ -66,5 +85,24 @@ public class SearchResultsPage extends BasePage{
     }
     public void clickOnSubCategoriesCheckBox(){
         elementUtils.clickOnElement(chkbxSubCategories,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+    public void clickOnListViewButton(){
+        elementUtils.clickOnElement(btnListView,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+    public boolean isSingleProductDisplayedInList(){
+        return elementUtils.displayStatusOfElement(singleProductInList,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+    public ProductDisplayPage clickOnImageOfTheSingleProductInList(){
+        elementUtils.clickOnElement(imgSingleProductInList,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+        return new ProductDisplayPage(driver);
+    }
+    public void clickOnGridViewButton(){
+        elementUtils.clickOnElement(btnGridView,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+    public boolean isSingleProductDisplayedInGrid(){
+       return elementUtils.displayStatusOfElement(singleProductInGrid,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
+    }
+    public void clickOnNameOfThenSingleProductInGrid(){
+        elementUtils.clickOnElement(singleProductNameInGrid,CommonUtils.EXPLICIT_WAIT_BASIC_TIME);
     }
 }
